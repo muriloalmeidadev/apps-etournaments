@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <AssemblyName>Caesareum.ETournamentsApp.Core</AssemblyName>
+        <RootNamespace>Caesareum.ETournamentsApp.Core</RootNamespace>
+        <IsPackable>false</IsPackable>
+        <ImplicitUsings>disable</ImplicitUsings>
+        <Nullable>disable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Fwks.Core" Version="1.0.0-beta.24" />
+        <PackageReference Include="FluentValidation" Version="11.5.2" />
+    </ItemGroup>
+
+</Project>
