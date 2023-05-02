@@ -1,7 +1,7 @@
 export const environment = {
     production: true,
     name: 'live',
-    title: 'eTournaments',
+    title: 'WSCD 2023',
     authServer: {
         url: 'http://live-keycloak-instance/auth',
         realm: 'dev-service',

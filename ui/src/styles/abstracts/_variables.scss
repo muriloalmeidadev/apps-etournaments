@@ -4,22 +4,18 @@
 // THEME
 @include mat.core();
 
-$primary-palette: mat.define-palette(mat.$indigo-palette, 500);
+$primary-palette: mat.define-palette(mat.$gray-palette, 800);
 $accent-palette: mat.define-palette(mat.$purple-palette, 500);
 $warn-palette: mat.define-palette(mat.$red-palette, 500);
 $success-palette: mat.define-palette(mat.$green-palette, 500);
 
-$app-theme: mat.define-light-theme(
-    (
-        color: (
-            primary: $primary-palette,
-            accent: $accent-palette,
-            warn: $warn-palette,
-        ),
-        typography: mat.define-typography-config(),
-        density: 0,
-    )
-);
+$app-theme: mat.define-light-theme((color: (primary: $primary-palette,
+                accent: $accent-palette,
+                warn: $warn-palette,
+            ),
+            typography: mat.define-typography-config(),
+            density: 0,
+        ));
 
 @include mat.all-component-themes($app-theme);
 
@@ -50,7 +46,7 @@ $container-breakpoints: (
     992px: 960px,
     1200px: 1140px,
     1400px: 1320px,
-) !default;
+    ) !default;
 
 // TABLES
 

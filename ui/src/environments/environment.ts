@@ -5,7 +5,7 @@
 export const environment = {
     production: false,
     name: 'dev',
-    title: 'eTournaments',
+    title: 'WSCD 2023',
     authServer: {
         url: 'http://localhost:9999/auth',
         realm: 'development',

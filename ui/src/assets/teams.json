@@ -1,0 +1,32 @@
+[
+	{
+		"id": 1,
+		"name": "yancastiga's team",
+		"leaderId": 5,
+		"members": []
+	},
+	{
+		"id": 2,
+		"name": "neto's team",
+		"leaderId": 22,
+		"members": []
+	},
+	{
+		"id": 3,
+		"name": "caipirinha's team",
+		"leaderId": 18,
+		"members": []
+	},
+	{
+		"id": 4,
+		"name": "p3dr0o's team",
+		"leaderId": 14,
+		"members": []
+	},
+	{
+		"id": 5,
+		"name": "hamper's team",
+		"leaderId": 20,
+		"members": []
+	}
+]

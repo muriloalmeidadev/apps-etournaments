@@ -18,7 +18,7 @@ import { environment } from '@app/environment'
         MatButtonModule,
         MatIconModule
     ],
-    templateUrl: './navbar.component.html',
+    templateUrl: './navbar.component.html'
 })
 export class NavbarComponent {
     environment: string

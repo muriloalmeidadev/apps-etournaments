@@ -1,75 +1,96 @@
-<mat-tab-group dynamicHeight>
-    <mat-tab label="Dialogs: Data and Confirmation">
-        <div class="grid">
-            <form class="form-x">
+<h3>
+    World Series Chorões do Derank 2023
+</h3>
+<mat-tab-group>
+    <mat-tab label="Rank & Teams">
+        <section>
+            <h4>
+                Options
+            </h4>
+            <div class="options">
                 <mat-form-field>
-                    <mat-label>What's your first name?</mat-label>
-                    <input matInput [(ngModel)]="firstName" name="firstName" placeholder="e.g. John" />
-                    <mat-hint>Use the modal to type your last name and we'll show the result passing data between
-                        components.</mat-hint>
+                    <mat-label>Your Name</mat-label>
+                    <input [(ngModel)]="name" matInput placeHolder="90 dias pra pegar nível 4" type="text">
                 </mat-form-field>
-                <div class="actions">
-                    <button type="button" mat-flat-button color="primary" (click)="openDataDialog()">
-                        Open Dialog
-                    </button>
-                </div>
-                <h3 *ngIf="firstName.length > 0 && lastName.length > 0">
-                    <strong> Full Name: {{ firstName }} {{ lastName }} </strong>
-                </h3>
-            </form>
-
-            <div class="wrapper">
-                <button mat-flat-button color="accent" (click)="openConfirmationDialog()">Open Dialog</button>
-                <div class="confirmation">
-                    <span>Modal Confirmation Result: </span>
-                    <mat-icon color="success" *ngIf="confirmationResult" aria-label="modal confirmation result yes" fontIcon="done"></mat-icon>
-                    <mat-icon color="warn" *ngIf="!confirmationResult" aria-label="modal confirmation result no" fontIcon="close"></mat-icon>
-                </div>
+                <mat-slide-toggle aria-label="this" [(ngModel)]="showTiers">Show Tiers</mat-slide-toggle>
+                <mat-slide-toggle aria-label="that" (change)="calculateTeamDRS()" [(ngModel)]="useMultiplier">Use Tier Multiplier</mat-slide-toggle>
+                <button [style] (click)="randomizeTeams()" mat-button>
+                    <mat-icon aria-hidden="false" aria-label="newbiw" fontIcon="shuffleuild"></mat-icon>
+                    Randomize Teams
+                </button>
             </div>
-        </div>
+        </section>
+        <main>
+            <article>
+                <table mat-table class="main-table" [dataSource]="members">
+
+                    <tr mat-header-row *matHeaderRowDef="membersColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: membersColumns"></tr>
+
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef class="main-column"> Name </th>
+                        <td mat-cell *matCellDef="let row" class="main-column">
+                            <span *ngIf="row.groupLeader else default" matBadge="C" matBadgeOverlap="false" matBadgeColor="accent">
+                                {{ row.name }}
+                            </span>
+                            <ng-template #default>
+                                {{ row.name }}
+                            </ng-template>
+                            <mat-icon *ngIf="row.newbie" class="newbie" aria-hidden="false" aria-label="newbiw" fontIcon="hiking"></mat-icon>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="mm">
+                        <th mat-header-cell *matHeaderCellDef class="score-column"> MM </th>
+                        <td mat-cell *matCellDef="let row" class="score-column">
+                            <img [src]="row.mm.uri" alt="mm uri level badge">
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="faceit">
+                        <th mat-header-cell *matHeaderCellDef class="score-column"> Faceit </th>
+                        <td mat-cell *matCellDef="let row" class="score-column">
+                            <img height="32" [src]="row.faceit.uri" alt="faceit uri level badge">
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="score">
+                        <th mat-header-cell *matHeaderCellDef class="score-column"> DRS </th>
+                        <td mat-cell *matCellDef="let row" class="score-column">
+                            <b>{{ row.score }}</b>
+                        </td>
+                    </ng-container>
+
+                </table>
+            </article>
+            <article>
+
+                <div class="teams">
+                    <mat-card *ngFor="let team of teams">
+                        <mat-card-header>
+                            <div class="avatar" mat-card-avatar [style.background-image]="'url(https://material.angular.io/assets/img/examples/shiba1.jpg)'"></div>
+                            <mat-card-title>{{ team.name }}</mat-card-title>
+                            <mat-card-subtitle> Team DRS: <b>{{ team.score }}</b> </mat-card-subtitle>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <ol class="team-members">
+                                <li>
+                                    <span matBadge="C" matBadgeOverlap="false" matBadgeColor="accent">{{ getMember(team.leaderId).name }}</span>
+                                </li>
+                                <li *ngFor="let member of team.members">
+                                    <mat-icon *ngIf="member.newbie" class="newbie" aria-hidden="false" aria-label="newbiw" fontIcon="hiking"></mat-icon>
+                                    <span [class]="name === member.name ? 'thats-me' : ''">{{ member.name }}</span> <sup *ngIf="showTiers">{{ member.score > 14 ? 'T1' : 'T2' }}</sup>
+                                </li>
+                            </ol>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+
+            </article>
+        </main>
     </mat-tab>
 
-    <mat-tab label="Tables: Pagination">
-        <form class="form-x">
-            <mat-form-field>
-                <mat-label>Filter for customers</mat-label>
-                <input matInput (keyup)="applyFilter($event)" placeholder="Ex. John Doe" #input />
-            </mat-form-field>
-        </form>
-
-        <table mat-table [dataSource]="dataSource" matSort>
-            <ng-container matColumnDef="guid">
-                <th mat-header-cell *matHeaderCellDef></th>
-                <td mat-cell *matCellDef="let row">
-                    <button mat-icon-button aria-label="delete customer action" (click)="deleteRow(row)">
-                        <mat-icon aria-label="delete customer icon" fontIcon="close" color="warn"></mat-icon>
-                    </button>
-                </td>
-            </ng-container>
-
-            <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Name">Name</th>
-                <td mat-cell *matCellDef="let row">{{ row.name }}</td>
-            </ng-container>
-
-            <mat-text-column name="dateOfBirth" headerText="DOB"></mat-text-column>
-            <ng-container matColumnDef="email">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by E-mail">E-mail</th>
-                <td mat-cell *matCellDef="let row">{{ row.email }}</td>
-            </ng-container>
-            <mat-text-column name="phoneNumber" headerText="Phone No."></mat-text-column>
-
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-
-            <tr class="mat-row" *matNoDataRow>
-                <td class="mat-cell table-no-results" colspan="5">
-                    No customers matching the filter "{{ input.value }}"
-                </td>
-            </tr>
-        </table>
-
-        <mat-paginator [length]="dataSource.data.length" [pageSize]="10" [showFirstLastButtons]="true" arial-label="Select Page">
-        </mat-paginator>
+    <mat-tab label="Matches">
+        <h3>to be defined.</h3>
     </mat-tab>
 </mat-tab-group>

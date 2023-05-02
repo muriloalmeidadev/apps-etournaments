@@ -1,0 +1,427 @@
+[
+	{
+		"id": 1,
+		"name": "meow",
+		"mm": {
+			"uri": "https://totalcsgo.com/image/ranks/64/skillgroup12.png",
+			"level": 12
+		},
+		"faceit": {
+			"uri": "https://beta.leetify.com/assets/images/rank-icons/faceit1.svg",
+			"level": 1
+		},
+		"csgoStats": 0,
+		"leetify": 0,
+		"score": 13,
+		"groupLeader": null,
+		"newbie": null
+	},
+	{
+		"id": 2,
+		"name": "Lipera",
+		"mm": {
+			"uri": "https://totalcsgo.com/image/ranks/64/skillgroup12.png",
+			"level": 12
+		},
+		"faceit": {
+			"uri": "https://beta.leetify.com/assets/images/rank-icons/faceit3.svg",
+			"level": 3
+		},
+		"csgoStats": 0,
+		"leetify": 0,
+		"score": 15,
+		"groupLeader": null,
+		"newbie": null
+	},
+	{
+		"id": 3,
+		"name": "Lepigeon",
+		"mm": {
+			"uri": "https://totalcsgo.com/image/ranks/64/skillgroup12.png",
+			"level": 12
+		},
+		"faceit": {
+			"uri": "https://beta.leetify.com/assets/images/rank-icons/faceit3.svg",
+			"level": 3
+		},
+		"csgoStats": 0,
+		"leetify": 0,
+		"score": 15,
+		"groupLeader": null,
+		"newbie": null
+	},
+	{
+		"id": 4,
+		"name": "Severus",
+		"mm": {
+			"uri": "https://totalcsgo.com/image/ranks/64/skillgroup12.png",
+			"level": 12
+		},
+		"faceit": {
+			"uri": "https://beta.leetify.com/assets/images/rank-icons/faceit2.svg",
+			"level": 2
+		},
+		"csgoStats": 0,
+		"leetify": 0,
+		"score": 14,
+		"groupLeader": null,
+		"newbie": null
+	},
+	{
+		"id": 5,
+		"name": "yancastiga",
+		"mm": {
+			"uri": "https://totalcsgo.com/image/ranks/64/skillgroup16.png",
+			"level": 16
+		},
+		"faceit": {
+			"uri": "https://beta.leetify.com/assets/images/rank-icons/faceit8.svg",
+			"level": 8
+		},
+		"csgoStats": 0,
+		"leetify": 0,
+		"score": 24,
+		"groupLeader": true,
+		"newbie": null
+	},
+	{
+		"id": 6,
+		"name": "Gordao da lancha",
+		"mm": {
+			"uri": "https://totalcsgo.com/image/ranks/64/skillgroup12.png",
+			"level": 12
+		},
+		"faceit": {
+			"uri": "https://beta.leetify.com/assets/images/rank-icons/faceit3.svg",
+			"level": 3
+		},
+		"csgoStats": 0,
+		"leetify": 0,
+		"score": 15,
+		"groupLeader": null,
+		"newbie": null
+	},
+	{
+		"id": 7,
+		"name": "Kenji",
+		"mm": {
+			"uri": "https://totalcsgo.com/image/ranks/64/skillgroup12.png",
+			"level": 12
+		},
+		"faceit": {
+			"uri": "https://beta.leetify.com/assets/images/rank-icons/faceit1.svg",
+			"level": 1
+		},
+		"csgoStats": 0,
+		"leetify": 0,
+		"score": 13,
+		"groupLeader": null,
+		"newbie": null
+	},
+	{
+		"id": 8,
+		"name": "Psiu",
+		"mm": {
+			"uri": "https://totalcsgo.com/image/ranks/64/skillgroup13.png",
+			"level": 13
+		},
+		"faceit": {
+			"uri": "https://beta.leetify.com/assets/images/rank-icons/faceit4.svg",
+			"level": 4
+		},
+		"csgoStats": 0,
+		"leetify": 0,
+		"score": 17,
+		"groupLeader": null,
+		"newbie": null
+	},
+	{
+		"id": 9,
+		"name": "TheY0unG SP",
+		"mm": {
+			"uri": "https://totalcsgo.com/image/ranks/64/skillgroup13.png",
+			"level": 13
+		},
+		"faceit": {
+			"uri": "https://beta.leetify.com/assets/images/rank-icons/faceit1.svg",
+			"level": 1
+		},
+		"csgoStats": 0,
+		"leetify": 0,
+		"score": 14,
+		"groupLeader": null,
+		"newbie": null
+	},
+	{
+		"id": 10,
+		"name": "VINI AK RX",
+		"mm": {
+			"uri": "https://totalcsgo.com/image/ranks/64/skillgroup15.png",
+			"level": 15
+		},
+		"faceit": {
+			"uri": "https://beta.leetify.com/assets/images/rank-icons/faceit2.svg",
+			"level": 2
+		},
+		"csgoStats": 0,
+		"leetify": 0,
+		"score": 17,
+		"groupLeader": null,
+		"newbie": null
+	},
+	{
+		"id": 11,
+		"name": "ThundeR",
+		"mm": {
+			"uri": "https://totalcsgo.com/image/ranks/64/skillgroup11.png",
+			"level": 11
+		},
+		"faceit": {
+			"uri": "https://beta.leetify.com/assets/images/rank-icons/faceit1.svg",
+			"level": 1
+		},
+		"csgoStats": 0,
+		"leetify": 0,
+		"score": 12,
+		"groupLeader": null,
+		"newbie": null
+	},
+	{
+		"id": 12,
+		"name": "Dozy",
+		"mm": {
+			"uri": "https://totalcsgo.com/image/ranks/64/skillgroup12.png",
+			"level": 12
+		},
+		"faceit": {
+			"uri": "https://beta.leetify.com/assets/images/rank-icons/faceit1.svg",
+			"level": 1
+		},
+		"csgoStats": 0,
+		"leetify": 0,
+		"score": 13,
+		"groupLeader": null,
+		"newbie": null
+	},
+	{
+		"id": 13,
+		"name": "M1ner00 ",
+		"mm": {
+			"uri": "https://totalcsgo.com/image/ranks/64/skillgroup8.png",
+			"level": 8
+		},
+		"faceit": {
+			"uri": "https://beta.leetify.com/assets/images/rank-icons/faceit1.svg",
+			"level": 1
+		},
+		"csgoStats": 0,
+		"leetify": 0,
+		"score": 9,
+		"groupLeader": null,
+		"newbie": true
+	},
+	{
+		"id": 14,
+		"name": "p3dr0o",
+		"mm": {
+			"uri": "https://totalcsgo.com/image/ranks/64/skillgroup15.png",
+			"level": 15
+		},
+		"faceit": {
+			"uri": "https://beta.leetify.com/assets/images/rank-icons/faceit4.svg",
+			"level": 4
+		},
+		"csgoStats": 0,
+		"leetify": 0,
+		"score": 19,
+		"groupLeader": true,
+		"newbie": null
+	},
+	{
+		"id": 15,
+		"name": "Antzeiraa",
+		"mm": {
+			"uri": "https://totalcsgo.com/image/ranks/64/skillgroup11.png",
+			"level": 11
+		},
+		"faceit": {
+			"uri": "https://beta.leetify.com/assets/images/rank-icons/faceit3.svg",
+			"level": 3
+		},
+		"csgoStats": 0,
+		"leetify": 0,
+		"score": 14,
+		"groupLeader": null,
+		"newbie": null
+	},
+	{
+		"id": 16,
+		"name": "Santo Rush",
+		"mm": {
+			"uri": "https://totalcsgo.com/image/ranks/64/skillgroup12.png",
+			"level": 12
+		},
+		"faceit": {
+			"uri": "https://beta.leetify.com/assets/images/rank-icons/faceit3.svg",
+			"level": 3
+		},
+		"csgoStats": 0,
+		"leetify": 0,
+		"score": 15,
+		"groupLeader": null,
+		"newbie": null
+	},
+	{
+		"id": 17,
+		"name": "Luukeveiga",
+		"mm": {
+			"uri": "https://totalcsgo.com/image/ranks/64/skillgroup11.png",
+			"level": 11
+		},
+		"faceit": {
+			"uri": "https://beta.leetify.com/assets/images/rank-icons/faceit2.svg",
+			"level": 2
+		},
+		"csgoStats": 0,
+		"leetify": 0,
+		"score": 13,
+		"groupLeader": null,
+		"newbie": null
+	},
+	{
+		"id": 18,
+		"name": "Caipirinha",
+		"mm": {
+			"uri": "https://totalcsgo.com/image/ranks/64/skillgroup14.png",
+			"level": 14
+		},
+		"faceit": {
+			"uri": "https://beta.leetify.com/assets/images/rank-icons/faceit5.svg",
+			"level": 5
+		},
+		"csgoStats": 0,
+		"leetify": 0,
+		"score": 19,
+		"groupLeader": true,
+		"newbie": null
+	},
+	{
+		"id": 19,
+		"name": "pl-",
+		"mm": {
+			"uri": "https://totalcsgo.com/image/ranks/64/skillgroup13.png",
+			"level": 13
+		},
+		"faceit": {
+			"uri": "https://beta.leetify.com/assets/images/rank-icons/faceit4.svg",
+			"level": 4
+		},
+		"csgoStats": 0,
+		"leetify": 0,
+		"score": 17,
+		"groupLeader": null,
+		"newbie": null
+	},
+	{
+		"id": 20,
+		"name": "hamper",
+		"mm": {
+			"uri": "https://totalcsgo.com/image/ranks/64/skillgroup13.png",
+			"level": 13
+		},
+		"faceit": {
+			"uri": "https://beta.leetify.com/assets/images/rank-icons/faceit4.svg",
+			"level": 4
+		},
+		"csgoStats": 0,
+		"leetify": 0,
+		"score": 17,
+		"groupLeader": true,
+		"newbie": null
+	},
+	{
+		"id": 21,
+		"name": "Profeta",
+		"mm": {
+			"uri": "https://totalcsgo.com/image/ranks/64/skillgroup13.png",
+			"level": 13
+		},
+		"faceit": {
+			"uri": "https://beta.leetify.com/assets/images/rank-icons/faceit4.svg",
+			"level": 4
+		},
+		"csgoStats": 0,
+		"leetify": 0,
+		"score": 17,
+		"groupLeader": null,
+		"newbie": null
+	},
+	{
+		"id": 22,
+		"name": "Neto Nunes",
+		"mm": {
+			"uri": "https://totalcsgo.com/image/ranks/64/skillgroup16.png",
+			"level": 16
+		},
+		"faceit": {
+			"uri": "https://beta.leetify.com/assets/images/rank-icons/faceit7.svg",
+			"level": 7
+		},
+		"csgoStats": 0,
+		"leetify": 0,
+		"score": 23,
+		"groupLeader": true,
+		"newbie": null
+	},
+	{
+		"id": 23,
+		"name": "Francozera",
+		"mm": {
+			"uri": "https://totalcsgo.com/image/ranks/64/skillgroup13.png",
+			"level": 13
+		},
+		"faceit": {
+			"uri": "https://beta.leetify.com/assets/images/rank-icons/faceit4.svg",
+			"level": 4
+		},
+		"csgoStats": 0,
+		"leetify": 0,
+		"score": 17,
+		"groupLeader": null,
+		"newbie": null
+	},
+	{
+		"id": 24,
+		"name": "Faceless",
+		"mm": {
+			"uri": "https://totalcsgo.com/image/ranks/64/skillgroup13.png",
+			"level": 13
+		},
+		"faceit": {
+			"uri": "https://beta.leetify.com/assets/images/rank-icons/faceit3.svg",
+			"level": 3
+		},
+		"csgoStats": 0,
+		"leetify": 0,
+		"score": 16,
+		"groupLeader": null,
+		"newbie": null
+	},
+	{
+		"id": 25,
+		"name": "Nun3ra",
+		"mm": {
+			"uri": "https://totalcsgo.com/image/ranks/64/skillgroup11.png",
+			"level": 11
+		},
+		"faceit": {
+			"uri": "https://beta.leetify.com/assets/images/rank-icons/faceit2.svg",
+			"level": 2
+		},
+		"csgoStats": 0,
+		"leetify": 0,
+		"score": 13,
+		"groupLeader": null,
+		"newbie": null
+	}
+]

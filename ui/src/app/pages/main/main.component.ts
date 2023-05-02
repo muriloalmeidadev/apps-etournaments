@@ -1,20 +1,16 @@
 import { CommonModule } from '@angular/common'
-import { AfterViewInit, Component, ViewChild } from '@angular/core'
+import { HttpClient, HttpClientModule } from '@angular/common/http'
+import { Component } from '@angular/core'
+import { MatIconModule } from '@angular/material/icon'
+import { MatTableModule } from '@angular/material/table'
+import { MatTabsModule } from '@angular/material/tabs'
+import { MatCardModule } from '@angular/material/card'
+import { MatListModule } from '@angular/material/list'
+import { MatBadgeModule } from '@angular/material/badge'
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FormsModule } from '@angular/forms'
 import { MatButtonModule } from '@angular/material/button'
-import { MatDialog, MatDialogModule } from '@angular/material/dialog'
-import { MatFormFieldModule } from '@angular/material/form-field'
-import { MatIconModule } from '@angular/material/icon'
 import { MatInputModule } from '@angular/material/input'
-import { MatTabsModule } from '@angular/material/tabs'
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator'
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar'
-import { MatSort } from '@angular/material/sort'
-import { MatTable, MatTableDataSource, MatTableModule } from '@angular/material/table'
-import { MatGridListModule } from '@angular/material/grid-list'
-import { ConfirmationDialogComponent, DataDialogComponent } from '@app/shared/components'
-import { CustomerResponse } from '@app/core/models'
-import { faker } from '@faker-js/faker'
 
 @Component({
     selector: 'app-main',
@@ -22,96 +18,136 @@ import { faker } from '@faker-js/faker'
     imports: [
         CommonModule,
         FormsModule,
-        MatTabsModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatButtonModule,
-        MatIconModule,
+        HttpClientModule,
         MatTableModule,
-        MatPaginatorModule,
-        MatDialogModule,
-        MatSnackBarModule,
-        MatGridListModule,
+        MatTabsModule,
+        MatIconModule,
+        MatCardModule,
+        MatListModule,
+        MatBadgeModule,
+        MatSlideToggleModule,
+        MatButtonModule,
+        MatInputModule
     ],
     templateUrl: './main.component.html',
     styleUrls: ['./main.component.scss'],
 })
-export class MainComponent implements AfterViewInit {
-    @ViewChild(MatTable) table!: MatTable<CustomerResponse>
-    @ViewChild(MatPaginator) paginator!: MatPaginator
-    @ViewChild(MatSort) sort!: MatSort
+export class MainComponent {
 
-    confirmationResult: boolean
-    firstName: string
-    lastName: string
+    members: Member[]
+    membersColumns: string[]
 
-    customers: CustomerResponse[]
-    dataSource: MatTableDataSource<CustomerResponse>
-    displayedColumns: string[]
+    teams: Team[]
 
-    constructor(private dialog: MatDialog, private snackBar: MatSnackBar) {
-        this.confirmationResult = false
-        this.firstName = ''
-        this.lastName = ''
-        this.customers = []
-        this.dataSource = new MatTableDataSource(this.customers)
-        this.displayedColumns = ['guid', 'name', 'dateOfBirth', 'email', 'phoneNumber']
-        for (let index = 0; index < 100; index++) {
-            this.customers.push({
-                guid: faker.datatype.uuid(),
-                name: faker.name.fullName(),
-                dateOfBirth: faker.date.birthdate().toLocaleDateString(),
-                email: faker.internet.email(),
-                phoneNumber: faker.phone.number('+### #########'),
-            })
-        }
+    showTiers: boolean
+    useMultiplier: boolean
+    name: string
+
+    constructor(
+        private httpClient: HttpClient
+    ) {
+        this.name = ''
+        this.showTiers = true
+        this.useMultiplier = false
+        this.members = []
+        this.membersColumns = ['name', 'score', 'faceit', 'mm']
+        this.teams = []
+        this.loadSourcesAsync().then(_ => this.randomizeTeams())
     }
 
-    ngAfterViewInit(): void {
-        this.dataSource.paginator = this.paginator
-        this.dataSource.sort = this.sort
-    }
+    async loadSourcesAsync(): Promise<void> {
+        return new Promise(async resolve => {
 
-    async openConfirmationDialog(): Promise<void> {
-        const dialogRef = this.dialog.open(ConfirmationDialogComponent, { autoFocus: false })
-        dialogRef
-            .afterClosed()
-            .toPromise()
-            .then((confirmationResult) => (this.confirmationResult = confirmationResult))
-    }
+            this.members = (await this.httpClient.get<Member[]>('assets/members.json').toPromise())
+                .sort((a, b) => a.groupLeader && !b.groupLeader ? -1 : 1)
+                .sort((a, b) =>
+                    b.score - a.score ||
+                    b.faceit.level - a.faceit.level ||
+                    b.mm.level - a.mm.level)
 
-    async openDataDialog(): Promise<void> {
-        const dialogRef = this.dialog.open(DataDialogComponent, {
-            data: { firstName: this.firstName },
+            this.teams = await this.httpClient.get<Team[]>('assets/teams.json').toPromise()
+
+            return resolve()
         })
-        dialogRef
-            .afterClosed()
-            .toPromise()
-            .then((lastName) => (this.lastName = lastName))
     }
 
-    deleteRow(row: CustomerResponse): void {
-        const index = this.customers.findIndex((x) => x.guid == row.guid)
-        if (index == -1) return
-        this.customers.splice(index, 1)
-        this.updateDataSource()
-        const snackBarRef = this.snackBar.open(`"${row.name}" was successfully removed.`, 'Undo', { duration: 3000 })
-        snackBarRef
-            .afterDismissed()
-            .toPromise()
-            .then((x) => {
-                if (!x.dismissedByAction) return
-                this.customers.splice(index, 0, row)
-                this.updateDataSource()
+    getMember(id: number): Member {
+        return this.members.find(x => x.id === id)!
+    }
+
+    randomizeTeams(): void {
+        this.teams.forEach(t => t.members = [])
+        const members = this.members.filter(x => !x.groupLeader)
+        this.randomizePartial(members.filter(x => x.score > 14))
+        this.randomizePartial(members.filter(x => x.score < 15))
+        this.calculateTeamDRS()
+    }
+
+    randomizePartial(members: Member[]) {
+        let teams = this.teams.map(x => x.id)
+        let member: Member
+        do {
+
+            member = members[this.rnd(members.length - 1)]
+            members.splice(members.findIndex(x => x.id === member.id), 1)
+
+            const random = this.rnd(teams.length - 1)
+            const team = this.teams.find(x => x.id === teams[random])!
+            const teamIndex = teams.findIndex(x => x === team.id)
+
+            if (team.members.length < 4) {
+                this.teams.find(x => x.id === team.id)!.members.push(member)
+                teams.splice(teamIndex, 1)
+            }
+
+            if (teams.length === 0)
+                teams = this.teams.map(x => x.id)
+
+        } while (members.length > 0)
+    }
+
+    calculateTeamDRS(): void {
+        this.teams.forEach(team => {
+            let totalScore = this.getMember(team.leaderId).score
+            let score = 0
+            team.members.forEach(member => {
+                score = member.score
+                totalScore += this.useMultiplier
+                    ? score > 14 ? (score + (score * 1)) : (score + (score * 0.5))
+                    : score
             })
+            team.score = totalScore
+        })
     }
 
-    applyFilter(event: Event): void {
-        this.dataSource.filter = (event.target as HTMLInputElement).value.trim().toLowerCase()
+    rnd(max: number): number {
+        const min = 0
+        return Math.floor(Math.random() * (max - min + 1)) + min
     }
+}
 
-    private updateDataSource(): void {
-        this.dataSource.data = this.customers
-        this.table.renderRows()
-    }
+export interface Team {
+    id: number
+    name: string
+    logo: string
+    leaderId: number
+    score: number
+    members: Member[]
+}
+
+export interface Member {
+    id: number
+    name: string
+    groupLeader: boolean
+    newbie: boolean
+    mm: StatsSource
+    faceit: StatsSource
+    leetify: StatsSource
+    csgoStats: StatsSource
+    score: number
+}
+
+export interface StatsSource {
+    uri: string
+    level: number
 }
