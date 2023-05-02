@@ -1,9 +1,7 @@
 import _httpInterceptorProviders from './http/http-interceptors.providers'
-import _keycloakProviders from './keycloak/keycloak.providers'
 
 const _providers = [
-    ..._httpInterceptorProviders,
-    // ..._keycloakProviders
+    ..._httpInterceptorProviders
 ]
 
 export default _providers
